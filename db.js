@@ -12,8 +12,17 @@ MongoClient.connect(connectionUrl, {useNewUrlParser:true, useUnifiedTopology: tr
    
     const db = client.db(databaseName)
    
-   db.collection('users').insertOne({
-       name: 'amar',
-       age: 21
-   })
+//    db.collection('users').insertOne({
+//        name: 'amar',
+//        age: 21
+//    }, (err, res)=>{
+//        if (err) {
+//            return console.log("Unable to insert")
+//        }
+//        console.log(res.ops)
+//    })
+
+//db.collection
+
+// 7 inserting documents 6:35
 })
