@@ -1,6 +1,5 @@
 //crud create read update delete
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+const { MongoClient, ObjectID } = require('mongodb')
 
 const connectionUrl = 'mongodb://127.0.0.1:27017'
 const databaseName = "task-manager"
@@ -11,52 +10,26 @@ MongoClient.connect(connectionUrl, {useNewUrlParser:true, useUnifiedTopology: tr
     }
    
     const db = client.db(databaseName)
-   
-//    db.collection('users').insertOne({
-//        name: 'amar',
-//        age: 21
-//    }, (err, res)=>{
-//        if (err) {
-//            return console.log("Unable to insert")
-//        }
-//        console.log(res.ops)
-//    })
-
-// db.collection('users').insertMany([
-//     {
-//     name:'amar',
-//     age:21
-// }, {
-//     name : 'prashant',
-//     age:21
-//         }
-//     ], (err, res) => {
-//         if(err){
-//             return console.log(err)
-//         }
-//         console.log(res.ops)
-//     })
-// })
-
-db.collection('tasks').insertMany([
-    {
-        name: 'admin',
-        completed: true
-    },
-    {
-        name: 'user',
-        completed: true
-    },
-    {
-        name: 'admin2',
-        completed: false
-    }
-], (err, res)=>{
-    if(err){
-        return console.log(err)
-    }
-    console.log(res.ops)
+    
+    db.collection('users').findOne({ name: 'rashant' }, (err, res)=>{
+        if(err) {
+            return console.log("err")
+        }
+        //console.log(res)
+    })
+    
+    db.collection('users').find({ age: 21 }).toArray((err, res)=>{
+        if(err) {
+            return console.log("err")
+        }
+        console.log(res)
+    })
+    db.collection('users').find({ age: 21 }).count((err, res)=>{
+        if(err) {
+            return console.log("err")
+        }
+        console.log(res)
+    })
+    
 })
-
-
-})
+//video 11 updating documents
