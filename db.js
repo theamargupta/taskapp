@@ -22,7 +22,41 @@ MongoClient.connect(connectionUrl, {useNewUrlParser:true, useUnifiedTopology: tr
 //        console.log(res.ops)
 //    })
 
-//db.collection
+// db.collection('users').insertMany([
+//     {
+//     name:'amar',
+//     age:21
+// }, {
+//     name : 'prashant',
+//     age:21
+//         }
+//     ], (err, res) => {
+//         if(err){
+//             return console.log(err)
+//         }
+//         console.log(res.ops)
+//     })
+// })
 
-// 7 inserting documents 6:35
+db.collection('tasks').insertMany([
+    {
+        name: 'admin',
+        completed: true
+    },
+    {
+        name: 'user',
+        completed: true
+    },
+    {
+        name: 'admin2',
+        completed: false
+    }
+], (err, res)=>{
+    if(err){
+        return console.log(err)
+    }
+    console.log(res.ops)
+})
+
+
 })
