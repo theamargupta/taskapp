@@ -11,24 +11,12 @@ MongoClient.connect(connectionUrl, {useNewUrlParser:true, useUnifiedTopology: tr
    
     const db = client.db(databaseName)
     
-    db.collection('users').findOne({ name: 'rashant' }, (err, res)=>{
-        if(err) {
-            return console.log("err")
-        }
-        //console.log(res)
-    })
-    
-    db.collection('users').find({ age: 21 }).toArray((err, res)=>{
-        if(err) {
-            return console.log("err")
-        }
+    db.collection('users').deleteOne({
+        name: 'mike'
+    }).then((res)=>{
         console.log(res)
-    })
-    db.collection('users').find({ age: 21 }).count((err, res)=>{
-        if(err) {
-            return console.log("err")
-        }
-        console.log(res)
+    }).catch((err)=>{
+        console.log(err)
     })
     
 })
