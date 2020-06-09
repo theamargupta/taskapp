@@ -1,47 +1,43 @@
-const mongoose = require('mongoose')
-const validator = require('validator')
+const mongoose = require("mongoose");
+const validator = require("validator");
 
-const User = mongoose.model('User', {
-    name: {
-        type: String,
-        required: true,
-        trim: true
+const User = mongoose.model("User", {
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    lowercase: true,
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error("Email is invalid");
+      }
     },
-    email: {
-      type: String,
-      required:true,
-        validate(value) {
-            if (!validator.isEmail(value)){
-                throw new Error('Must provide a valid email address')
-            } 
-        },
-        trim: true,
-        lowercase:true
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 7,
+    trim: true,
+    validate(value) {
+      if (value.toLowerCase().includes("password")) {
+        throw new Error('Password cannot contain "password"');
+      }
     },
-    email: {
-        type: String,
-      required:true,
-        validate(value) {
-            if (!validator.isPassword(value)){
-                throw new Error('Must provide a valid email address')
-            } 
-        }
-        
+  },
+  age: {
+    type: Number,
+    default: 0,
+    validate(value) {
+      if (value < 0) {
+        throw new Error("Age must be a postive number");
+      }
     },
-    age: {
-        type: Number,
-        validate(value){
-            if (value < 0 ) {
-                throw new Error('age must be a positive no')
-            }
-        }
-    },
-    likefruit: {
-        type: Boolean
-    },
-    task: {
-        
-    }
-})
+  },
+});
 
-module.exports = User
+module.exports = User;

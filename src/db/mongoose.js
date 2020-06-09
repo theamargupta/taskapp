@@ -6,20 +6,16 @@ mongoose.connect("mongodb://127.0.0.1:27017/task-manager-api", {
   useCreateIndex: true,
 });
 
-
-const prashant = new User({
-  name: "prasha   nt   ",
-  email: "amAAAAar@gmail.com",
-  password: "dsadfskkl2211kmcd",
-  age: 9,
-  likefruit: true,
+const Task = mongoose.model("Task", {
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-prashant
-  .save()
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+
